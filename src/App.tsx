@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/molecules/header/index";
+import { BrowserRouter, Routes as Switch, Route } from "react-router-dom";
+import { items } from "./constants/menu";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header items={items} />
+      <Switch>
+        <Route
+          path="/orders"
+          element={<div children="my list of orders come here" />}
+        />
+        <Route
+          path="/orders/edit/:id"
+          element={<div children="edit order comes here" />}
+        />
+        <Route path="*" element={<div>404 not found</div>} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
