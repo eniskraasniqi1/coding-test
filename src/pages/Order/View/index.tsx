@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import OrderDetails from "src/components/molecules/order-details";
+import OrderDetails from "src/components/organisms/order-details";
 import { getOrderById } from "src/services";
 import { Order } from "src/types";
 
@@ -22,9 +22,9 @@ const ViewOrder = () => {
   }
 
   return (
-    <div>
+    <>
       <OrderDetails order={order} />
-    </div>
+    </>
   );
 };
 

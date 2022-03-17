@@ -6,3 +6,11 @@ export function calculatePercentage(items: OrderItem[] | undefined): any {
 
   return (sum / items.length).toFixed(2) || 0;
 }
+
+export function isPrimitive(val: any) {
+  if (val === Object(val)) {
+    return false;
+  } else {
+    return true;
+  }
+}

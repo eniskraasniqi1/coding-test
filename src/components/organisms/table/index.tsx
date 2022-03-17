@@ -1,50 +1,23 @@
-import React, { useState, useEffect } from "react";
-import TableHeader from "src/components/atoms/table/header";
-import TableRow from "src/components/atoms/table/row";
-import { getAllOrders } from "src/services";
-import { Order } from "src/types";
+import React from "react";
+import TableHeader from "src/components/molecules/table/header";
+import TableBody from "src/components/molecules/table/body";
 
 import styles from "./table.module.scss";
 
-const Table = () => {
-  const [orders, setOrders] = useState<Order[] | []>([]);
+interface TableProps {
+  headerList: string[];
+  items?: any[] | undefined;
+  onClick?: (path: string, e: React.SyntheticEvent) => void;
+  onDelete?: (id: string, e: React.SyntheticEvent) => void;
+}
 
-  const handleDelete = (id: string, e: React.SyntheticEvent): void => {
-    e.stopPropagation();
-    const filteredOrders: Order[] = orders.filter(
-      (order: Order) => order.id !== id
-    );
-
-    setOrders(filteredOrders);
-  };
-
-  useEffect(() => {
-    const getOrdersHook = async () => {
-      const data = await getAllOrders();
-      setOrders(data);
-    };
-
-    getOrdersHook();
-  }, []);
-
-  return (
-    <div className={styles.tableWrapper}>
-      <table className={styles.table}>
-        <TableHeader
-          list={["Order id.", "Customer", "Quantity", "Total Price"]}
-        />
-        <tbody className={styles.body}>
-          {orders?.map((order: Order, index: number) => (
-            <TableRow
-              key={`order.id-#${index}`}
-              order={order}
-              onDelete={handleDelete}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+const Table = ({ headerList, items, onClick, onDelete }: TableProps) => (
+  <div className={styles.tableWrapper}>
+    <table className={styles.table}>
+      <TableHeader list={headerList} />
+      <TableBody items={items} onClick={onClick} onDelete={onDelete} />
+    </table>
+  </div>
+);
 
 export default Table;

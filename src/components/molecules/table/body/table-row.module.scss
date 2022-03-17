@@ -1,0 +1,29 @@
+.body {
+  td {
+    padding: 1.5rem;
+  }
+
+  .tableRow {
+    border-bottom: 1px solid var(--table-border-color);
+    transition: transform 0.1s;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.005);
+      background-color: var(--table-border-color);
+    }
+
+    > td {
+      &:last-of-type {
+        display: flex;
+        justify-content: flex-end;
+
+        > button:last-of-type {
+          margin-left: 1rem;
+          width: 4rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import React from "react";
+import Table from "src/components/organisms/table";
 import { calculatePercentage } from "src/helpers";
-import { Order, OrderItem } from "src/types";
+import { Order } from "src/types";
 import styles from "./order-details.module.scss";
 
 interface OrderDetailsProps {
@@ -32,10 +33,11 @@ const OrderDetails = ({ order }: OrderDetailsProps) => {
         </div>
       </div>
       <div className={styles.products}>
-        Products:
-        <ul>
-          {order?.items.map((orderItem: OrderItem) => orderItem["product-id"])}
-        </ul>
+        <p>Products</p>
+        <Table
+          headerList={["Product Id.", "Quantity", "Price", "Total"]}
+          items={items}
+        />
       </div>
     </div>
   );
