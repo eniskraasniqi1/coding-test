@@ -4,11 +4,9 @@ import { Order } from "src/types";
 // API Calls can be included instead of dummy data here.
 const orders: Order[] = [order1, order2, order3];
 
-function getOrderById(id: number): Promise<Order> {
+function getOrderById(id: string | undefined): Promise<Order> {
   return new Promise((resolve, reject) => {
-    const order: Order | undefined = orders.find(
-      (ord: Order) => ord.id === String(id)
-    );
+    const order: Order | undefined = orders.find((ord: Order) => ord.id === id);
 
     if (order) {
       resolve(order);

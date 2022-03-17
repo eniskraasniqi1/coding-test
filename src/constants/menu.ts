@@ -5,7 +5,7 @@ export const items = [
   },
   {
     name: "View an Order",
-    path: "/orders/:id",
+    path: "/orders/1",
   },
   {
     name: "Edit Order",

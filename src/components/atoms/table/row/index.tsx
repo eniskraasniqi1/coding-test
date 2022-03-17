@@ -8,8 +8,7 @@ interface TableRowProps {
   onDelete: (id: string, e: React.SyntheticEvent) => void;
 }
 
-const TableRow = (props: TableRowProps) => {
-  const { order, onDelete } = props;
+const TableRow = ({ order, onDelete }: TableRowProps) => {
   const navigate = useNavigate();
 
   const navigateTo = (e: React.SyntheticEvent, path: string): void => {
