@@ -1,7 +1,12 @@
 import React from "react";
+import Table from "src/components/organisms/table";
 
 const Orders = () => {
-  return <div>List of Orders</div>;
+  return (
+    <div>
+      <Table />
+    </div>
+  );
 };
 
 export default Orders;

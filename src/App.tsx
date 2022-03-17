@@ -9,12 +9,14 @@ function App() {
   return (
     <BrowserRouter>
       <Header items={items} />
-      <Switch>
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/orders/:id" element={<ViewOrder />} />
-        <Route path="/orders/edit/:id" element={<EditOrder />} />
-        <Route path="*" element={<div>404 not found</div>} />
-      </Switch>
+      <div className="body-container">
+        <Switch>
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:id" element={<ViewOrder />} />
+          <Route path="/orders/edit/:id" element={<EditOrder />} />
+          <Route path="*" element={<div>404 not found</div>} />
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }

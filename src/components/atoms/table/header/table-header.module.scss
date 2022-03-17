@@ -1,0 +1,9 @@
+.header {
+  border-bottom: 1px solid var(--table-border-color);
+
+  th {
+    text-align: left;
+    height: 3rem;
+    color: var(--default-font-color);
+  }
+}

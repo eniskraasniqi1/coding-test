@@ -1,0 +1,24 @@
+.tableWrapper {
+  padding: 1rem 0 0 0;
+  border: 1px solid var(--table-border-color);
+  max-width: 96rem;
+  margin: 0 auto;
+  border-radius: 0.8rem;
+  background-color: var(--header-background-color);
+  color: var(--table-font-color);
+
+  .table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    font-size: 1.5rem;
+
+    th,
+    td {
+      padding: 1.5rem;
+    }
+
+    .body {
+    }
+  }
+}

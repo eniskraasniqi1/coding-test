@@ -1,4 +1,24 @@
 :root {
   // Colors
   --header-background-color: var(--color-1);
+  --body-background-color: var(--color-2);
+  --table-border-color: var(--color-3);
+  --table-font-color: var(--color-4);
+  --default-font-color: var(--color-5);
+
+  // Sizes
+  --maximum-container-size: 96rem;
+}
+
+html,
+body {
+  margin: 0;
+  font-size: 10px;
+  background-color: var(--body-background-color);
+  height: 100%;
+}
+
+.body-container {
+  max-width: var(--maximum-container-size);
+  margin: 1rem auto;
 }
