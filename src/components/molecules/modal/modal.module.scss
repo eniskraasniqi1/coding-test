@@ -1,0 +1,43 @@
+.modal {
+  display: none;
+
+  &.activeModal {
+    display: block;
+  }
+
+  .modalOverlay {
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  .modalContent {
+    background-color: var(--header-background-color);
+    color: grey;
+    padding: 2rem;
+    max-width: 40rem;
+    min-height: 10rem;
+    border-radius: 1rem;
+    position: absolute;
+    left: calc(50% - 20rem);
+    z-index: 100;
+    position: absolute;
+
+    .closeButton {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid white;
+    }
+  }
+}

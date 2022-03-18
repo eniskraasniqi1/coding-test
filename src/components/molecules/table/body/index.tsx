@@ -1,5 +1,5 @@
 import React from "react";
-import { isPrimitive } from "src/helpers";
+import { getIdentifierKey, isPrimitive } from "src/helpers";
 import styles from "./table-row.module.scss";
 
 interface TableBodyProps {
@@ -12,12 +12,13 @@ const TableBody = ({ items, onDelete, onClick }: TableBodyProps) => (
   <tbody className={styles.body}>
     {items?.map((item: any) => {
       const keys = Object.keys(item) || [];
+      const itemIdKey = getIdentifierKey(item);
 
       return (
         <tr
           className={styles.tableRow}
-          onClick={(e) => onClick && onClick(`/orders/${item.id}`, e)}
-          key={`${item.id}`}
+          onClick={(e) => onClick && onClick(`/orders/${item[itemIdKey]}`, e)}
+          key={`${item[itemIdKey]}`}
         >
           {keys?.map((key: string, index: number) => (
             <React.Fragment key={`td-#${index}`}>
@@ -30,7 +31,7 @@ const TableBody = ({ items, onDelete, onClick }: TableBodyProps) => (
           ))}
           <td>
             {onDelete && (
-              <button onClick={(e) => onDelete && onDelete(item.id, e)}>
+              <button onClick={(e) => onDelete && onDelete(item[itemIdKey], e)}>
                 X
               </button>
             )}

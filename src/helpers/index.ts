@@ -14,3 +14,8 @@ export function isPrimitive(val: any) {
     return true;
   }
 }
+
+export function getIdentifierKey(item: any): string {
+  const keys = ["id", "product-id"];
+  return keys.find((key) => (item[key] ? true : false)) || "id";
+}
