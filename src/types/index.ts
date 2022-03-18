@@ -2,13 +2,22 @@
 export type Order = {
   id: string;
   "customer-id": string;
-  items: OrderItem[];
+  items: Product[];
   total: string;
 };
 
-export type OrderItem = {
+export type Product = {
   "product-id": string;
   quantity: string;
   "unit-price": string;
   total: string;
+};
+
+export type Input = {
+  id: string;
+  name: string;
+  type: string;
+  value: any;
+  onChange: any;
+  onBlur: any;
 };
