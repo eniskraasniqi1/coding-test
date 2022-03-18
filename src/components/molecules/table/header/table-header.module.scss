@@ -7,4 +7,15 @@
     color: var(--default-font-color);
     padding: 1.5rem;
   }
+
+  .btnContainer {
+    display: flex;
+    justify-content: flex-end;
+
+    > button {
+      width: 40px;
+      width: 40px;
+      cursor: pointer;
+    }
+  }
 }

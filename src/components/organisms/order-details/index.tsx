@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "src/components/molecules/modal";
 import Table from "src/components/organisms/table";
 import { calculatePercentage } from "src/helpers";
-import { Order } from "src/types";
+import { Order, OrderItem } from "src/types";
 import styles from "./order-details.module.scss";
 
 interface OrderDetailsProps {
@@ -9,7 +10,19 @@ interface OrderDetailsProps {
 }
 
 const OrderDetails = ({ order }: OrderDetailsProps) => {
+  const [show, setModal] = useState<boolean>(false);
   const { total, id, items } = order || {};
+  const [products, setProducts] = useState<OrderItem[] | undefined>(
+    items || []
+  );
+
+  const handleDelete = (id: string, e: React.SyntheticEvent): void => {
+    const filteredOrders: OrderItem[] | undefined = products?.filter(
+      (item: OrderItem) => item["product-id"] !== id
+    );
+
+    setProducts(filteredOrders);
+  };
 
   return (
     <div className={styles.detailsComponent}>
@@ -36,8 +49,13 @@ const OrderDetails = ({ order }: OrderDetailsProps) => {
         <p>Products</p>
         <Table
           headerList={["Product Id.", "Quantity", "Price", "Total"]}
-          items={items}
+          items={products}
+          addRow={() => setModal(true)}
+          onDelete={handleDelete}
         />
+        <Modal show={show} close={() => setModal(false)}>
+          Modal content here
+        </Modal>
       </div>
     </div>
   );

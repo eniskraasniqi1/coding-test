@@ -6,15 +6,22 @@ import styles from "./table.module.scss";
 
 interface TableProps {
   headerList: string[];
-  items?: any[] | undefined;
+  items: any[] | undefined;
+  addRow?: (item: any) => void;
   onClick?: (path: string, e: React.SyntheticEvent) => void;
   onDelete?: (id: string, e: React.SyntheticEvent) => void;
 }
 
-const Table = ({ headerList, items, onClick, onDelete }: TableProps) => (
+const Table = ({
+  headerList,
+  items,
+  addRow,
+  onClick,
+  onDelete,
+}: TableProps) => (
   <div className={styles.tableWrapper}>
     <table className={styles.table}>
-      <TableHeader list={headerList} />
+      <TableHeader addRow={addRow} list={headerList} />
       <TableBody items={items} onClick={onClick} onDelete={onDelete} />
     </table>
   </div>
