@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "src/components/atoms/button";
 import { getIdentifierKey, isPrimitive } from "src/helpers";
 import styles from "./table-row.module.scss";
 
@@ -31,9 +32,11 @@ const TableBody = ({ items, onDelete, onClick }: TableBodyProps) => (
           ))}
           <td>
             {onDelete && (
-              <button onClick={(e) => onDelete && onDelete(item[itemIdKey], e)}>
-                X
-              </button>
+              <Button
+                className="danger"
+                btnText="X"
+                onClick={(e: any) => onDelete && onDelete(item[itemIdKey], e)}
+              />
             )}
           </td>
         </tr>

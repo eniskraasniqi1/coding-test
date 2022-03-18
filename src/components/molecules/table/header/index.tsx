@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "src/components/atoms/button";
 
 import styles from "./table-header.module.scss";
 
@@ -15,7 +16,7 @@ const TableHeader = ({ list, addRow }: TableHeaderProps) => (
       ))}
       {addRow && (
         <th className={styles.btnContainer}>
-          <button onClick={addRow}>+</button>
+          <Button btnText="+" onClick={addRow} />
         </th>
       )}
     </tr>

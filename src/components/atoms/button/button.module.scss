@@ -1,0 +1,15 @@
+.button {
+  border-radius: 0.4rem;
+  border: 0;
+  background-color: #5885ff;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.4s;
+  font-size: 1.5rem;
+
+  &.danger {
+    background-color: #e55959;
+    font-size: 1rem;
+    height: 3rem;
+  }
+}
