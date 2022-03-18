@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Modal from "src/components/molecules/modal";
 import Table from "src/components/organisms/table";
 import { calculatePercentage } from "src/helpers";
-import { Order, OrderItem } from "src/types";
+import { Order, Product } from "src/types";
+import AddProductForm from "../add-product";
 import styles from "./order-details.module.scss";
 
 interface OrderDetailsProps {
@@ -12,16 +13,19 @@ interface OrderDetailsProps {
 const OrderDetails = ({ order }: OrderDetailsProps) => {
   const [show, setModal] = useState<boolean>(false);
   const { total, id, items } = order || {};
-  const [products, setProducts] = useState<OrderItem[] | undefined>(
-    items || []
-  );
+  const [products, setProducts] = useState<Product[] | undefined>(items || []);
 
   const handleDelete = (id: string, e: React.SyntheticEvent): void => {
-    const filteredOrders: OrderItem[] | undefined = products?.filter(
-      (item: OrderItem) => item["product-id"] !== id
+    const filteredOrders: Product[] | undefined = products?.filter(
+      (item: Product) => item["product-id"] !== id
     );
 
     setProducts(filteredOrders);
+  };
+
+  const addProduct = (product: Product): void => {
+    products && setProducts([...products, product]);
+    setModal(false);
   };
 
   return (
@@ -54,7 +58,7 @@ const OrderDetails = ({ order }: OrderDetailsProps) => {
           onDelete={handleDelete}
         />
         <Modal show={show} close={() => setModal(false)}>
-          Modal content here
+          <AddProductForm onSubmit={addProduct} />
         </Modal>
       </div>
     </div>
