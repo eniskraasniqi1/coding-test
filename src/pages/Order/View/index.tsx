@@ -4,8 +4,11 @@ import { useParams } from "react-router-dom";
 import Modal from "src/components/molecules/modal";
 import Table from "src/components/organisms/table";
 import { calculatePercentage } from "src/helpers";
-import { addProductThunk, removeProductThunk } from "src/store/order/thunks";
-import { Order, Product } from "src/types";
+import {
+  addOrderItemThunk,
+  removeOrderItemThunk,
+} from "src/store/order/thunks";
+import { Order, OrderItem } from "src/types";
 import AddProductForm from "src/components/organisms/add-product";
 import styles from "./view.module.scss";
 
@@ -24,7 +27,7 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
     removeProduct(id, productId);
   };
 
-  const handleOnSubmit = (product: Product): void => {
+  const handleOnSubmit = (product: OrderItem): void => {
     addProduct(id, product);
     setModal(false);
   };
@@ -51,7 +54,7 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
         </div>
       </div>
       <div className={styles.products}>
-        <p>Products</p>
+        <p>Order Items:</p>
         <Table
           headerList={["Product Id.", "Quantity", "Price", "Total"]}
           items={items}
@@ -71,10 +74,10 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-  addProduct: (id: string | undefined, product: Product) =>
-    dispatch(addProductThunk(id, product)),
+  addProduct: (id: string | undefined, product: OrderItem) =>
+    dispatch(addOrderItemThunk(id, product)),
   removeProduct: (id: string | undefined, productId: string) =>
-    dispatch(removeProductThunk(id, productId)),
+    dispatch(removeOrderItemThunk(id, productId)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

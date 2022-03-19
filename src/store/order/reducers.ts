@@ -1,12 +1,14 @@
 import {
-  ADD_PRODUCT,
+  ADD_ORDER_ITEM,
+  REMOVE_ORDER_ITEM,
   REMOVE_ORDER,
   GET_ALL_ORDERS,
-  REMOVE_PRODUCT,
+  GET_ALL_PRODUCTS,
 } from "../actionTypes";
 
 const initialState: any = {
   orders: [],
+  products: [],
   fetched: false,
 };
 
@@ -24,15 +26,20 @@ export default (state = initialState, action: any): any => {
         ...state,
         orders: action.payload,
       };
-    case ADD_PRODUCT:
+    case ADD_ORDER_ITEM:
       return {
         ...state,
         orders: action.payload,
       };
-    case REMOVE_PRODUCT:
+    case REMOVE_ORDER_ITEM:
       return {
         ...state,
         orders: action.payload,
+      };
+    case GET_ALL_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload,
       };
     default:
       return state;

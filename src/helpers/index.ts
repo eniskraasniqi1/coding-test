@@ -1,6 +1,6 @@
-import { Product } from "src/types";
+import { OrderItem } from "src/types";
 
-export function calculatePercentage(items: Product[] | undefined): any {
+export function calculatePercentage(items: OrderItem[] | undefined): any {
   if (!items?.length) return 0;
   const sum = items.reduce((a, b) => a + Number(b["unit-price"]), 0);
 

@@ -1,10 +1,11 @@
-import { getAllOrders } from "src/services";
-import { Order, Product } from "src/types";
+import { getAllOrders, getAllProducts } from "src/services";
+import { Order, OrderItem, Product } from "src/types";
 import {
-  addProductAction,
+  addOrderItemAction,
   getAllOrdersAction,
+  getAllProductsAction,
   removeOrderAction,
-  removeProductAction,
+  removeOrderItemAction,
 } from "./actions";
 
 export const getOrdersThunk: any = () => async (dispatch: Function) => {
@@ -26,8 +27,15 @@ export const removeOrderThunk =
     }
   };
 
-export const addProductThunk =
-  (orderId: string | undefined, product: Product) =>
+export const getAllProductsThunk = () => async (dispatch: Function) => {
+  const data: Product[] = await getAllProducts();
+  if (data) {
+    return dispatch(getAllProductsAction(data));
+  }
+};
+
+export const addOrderItemThunk =
+  (orderId: string | undefined, product: OrderItem) =>
   async (dispatch: Function, getState: Function) => {
     if (orderId && product) {
       const { orderReducer } = getState();
@@ -40,11 +48,11 @@ export const addProductThunk =
         return order;
       });
 
-      return dispatch(addProductAction(updatedOrders));
+      return dispatch(addOrderItemAction(updatedOrders));
     }
   };
 
-export const removeProductThunk =
+export const removeOrderItemThunk =
   (orderId: string | undefined, productId: string) =>
   async (dispatch: Function, getState: Function) => {
     if (orderId && productId) {
@@ -52,7 +60,7 @@ export const removeProductThunk =
 
       const updatedOrders: Order[] = orderReducer.orders.map((order: Order) => {
         if (order.id === orderId) {
-          order.items = order.items.filter((product: Product) => {
+          order.items = order.items.filter((product: OrderItem) => {
             if (product["product-id"] === productId) {
               order.total = String(Number(order.total) - Number(product.total));
               return false;
@@ -65,6 +73,6 @@ export const removeProductThunk =
         return order;
       });
 
-      return dispatch(removeProductAction(updatedOrders));
+      return dispatch(removeOrderItemAction(updatedOrders));
     }
   };

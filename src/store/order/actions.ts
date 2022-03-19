@@ -1,9 +1,10 @@
-import { Order } from "src/types";
+import { Order, Product } from "src/types";
 import {
-  ADD_PRODUCT,
+  ADD_ORDER_ITEM,
   REMOVE_ORDER,
   GET_ALL_ORDERS,
-  REMOVE_PRODUCT,
+  REMOVE_ORDER_ITEM,
+  GET_ALL_PRODUCTS,
 } from "../actionTypes";
 
 export const getAllOrdersAction = (payload: Order[]) => ({
@@ -16,12 +17,17 @@ export const removeOrderAction = (orders: Order[]) => ({
   payload: orders,
 });
 
-export const addProductAction = (orders: Order[]) => ({
-  type: ADD_PRODUCT,
+export const getAllProductsAction = (payload: Product[]) => ({
+  type: GET_ALL_PRODUCTS,
+  payload,
+});
+
+export const addOrderItemAction = (orders: Order[]) => ({
+  type: ADD_ORDER_ITEM,
   payload: orders,
 });
 
-export const removeProductAction = (orders: Order[]) => ({
-  type: REMOVE_PRODUCT,
+export const removeOrderItemAction = (orders: Order[]) => ({
+  type: REMOVE_ORDER_ITEM,
   payload: orders,
 });
