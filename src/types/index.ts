@@ -21,3 +21,8 @@ export type Input = {
   onChange: any;
   onBlur: any;
 };
+
+// Redux
+export interface AppState {
+  orders?: Order[];
+}
