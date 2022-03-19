@@ -1,6 +1,6 @@
-import { order1, order2, order3 } from "src/constants/orders";
-import { products } from "src/constants/products";
-import { customers } from "src/constants/customers";
+import { order1, order2, order3 } from "src/data/orders";
+import { products } from "src/data/products";
+import { customers } from "src/data/customers";
 import { Customer, Order, Product } from "src/types";
 
 // API Calls can be included instead of dummy data here.

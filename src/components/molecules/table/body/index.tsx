@@ -12,8 +12,8 @@ interface TableBodyProps {
 const TableBody = ({ items, onDelete, onClick }: TableBodyProps) => (
   <tbody className={styles.body}>
     {items?.map((item: any) => {
-      const keys = Object.keys(item) || [];
-      const itemIdKey = getIdentifierKey(item);
+      const keys: string[] = Object.keys(item) || [];
+      const itemIdKey: string = getIdentifierKey(item);
 
       return (
         <tr

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import { FormikValues, useFormik } from "formik";
 
 import InputField from "src/components/atoms/input-field";
+import SelectField from "src/components/atoms/select-field";
+import Button from "src/components/atoms/button";
+
+import { OrderItem, Product } from "src/types";
+import { addProductSchema } from "src/constants/schema";
 
 import styles from "./add-product.module.scss";
-import { OrderItem, Product } from "src/types";
-import Button from "src/components/atoms/button";
-import SelectField from "src/components/atoms/select-field";
 
 interface AddProductFormProps extends Props {
   onSubmit: (item: OrderItem) => void;
@@ -19,6 +20,18 @@ const AddProductForm = ({ onSubmit, products }: AddProductFormProps) => {
   const [currentProduct, setProduct] = useState<Product | undefined>(
     products && products[0]
   );
+
+  const handleFormSubmit = async (values: FormikValues) => {
+    const orderItem: OrderItem = {
+      "product-id": values.product,
+      quantity: values.quantity,
+      total: values.total,
+      "unit-price": values.price,
+    };
+
+    setError("");
+    onSubmit(orderItem);
+  };
 
   const {
     submitCount,
@@ -35,37 +48,22 @@ const AddProductForm = ({ onSubmit, products }: AddProductFormProps) => {
       price: currentProduct?.price || "",
       total: currentProduct?.price || "",
     },
-    onSubmit: async (values) => {
-      const orderItem: OrderItem = {
-        "product-id": values.product,
-        quantity: values.quantity,
-        total: values.total,
-        "unit-price": values.price,
-      };
-
-      setError("");
-      onSubmit(orderItem);
-    },
-    validationSchema: yup.object({
-      product: yup.string().required("Product is required!"),
-      quantity: yup.number().required("Quantity is required!"),
-      price: yup.number().required("Price is required!"),
-      total: yup.number().required("Total is required!"),
-    }),
+    onSubmit: handleFormSubmit,
+    validationSchema: addProductSchema,
     validateOnMount: false,
   });
 
   const handleProductChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const foundProduct = products?.find(
+    const foundProduct: Product = products?.find(
       (product: Product) => product.id === e.target.value
     );
 
     handleChange(e);
     setProduct(foundProduct);
 
-    const totalVal = (
+    const totalVal: string = (
       Number(values.quantity) * Number(foundProduct?.price)
     ).toFixed(3);
     setFieldValue("price", Number(foundProduct?.price));
@@ -76,7 +74,7 @@ const AddProductForm = ({ onSubmit, products }: AddProductFormProps) => {
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
     handleChange(e);
-    const totalVal = (
+    const totalVal: string = (
       Number(e.target.value) * Number(currentProduct?.price)
     ).toFixed(3);
     setFieldValue("total", totalVal);
