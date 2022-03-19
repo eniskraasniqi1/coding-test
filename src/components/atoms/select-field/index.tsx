@@ -30,7 +30,7 @@ const SelectField = ({
             </option>
           ))}
         </select>
-        {error && <div>{error}</div>}
+        {error && <div className={styles.errorText}>{error}</div>}
       </div>
     </>
   );
