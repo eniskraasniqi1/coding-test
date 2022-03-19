@@ -1,5 +1,5 @@
 import { getAllOrders } from "src/services";
-import { Product } from "src/types";
+import { Order, Product } from "src/types";
 import {
   addProductAction,
   getAllOrdersAction,
@@ -14,26 +14,57 @@ export const getOrdersThunk: any = () => async (dispatch: Function) => {
   }
 };
 
-export const removeOrderThunk = (id: string) => async (dispatch: Function) => {
-  if (id) {
-    return dispatch(removeOrderAction(id));
-  }
-};
+export const removeOrderThunk =
+  (id: string) => async (dispatch: Function, getState: Function) => {
+    if (id) {
+      const { orderReducer } = getState();
+
+      const updatedOrders: Order[] = orderReducer.orders.filter(
+        (order: Order) => order.id !== id
+      );
+      return dispatch(removeOrderAction(updatedOrders));
+    }
+  };
 
 export const addProductThunk =
   (orderId: string | undefined, product: Product) =>
-  async (dispatch: Function) => {
+  async (dispatch: Function, getState: Function) => {
     if (orderId && product) {
-      return dispatch(addProductAction(orderId, product));
+      const { orderReducer } = getState();
+
+      const updatedOrders: Order[] = orderReducer.orders.map((order: Order) => {
+        if (order.id === orderId) {
+          order.items = [...order.items, product];
+          order.total = String(Number(order.total) + Number(product.total));
+        }
+        return order;
+      });
+
+      return dispatch(addProductAction(updatedOrders));
     }
   };
 
 export const removeProductThunk =
   (orderId: string | undefined, productId: string) =>
-  async (dispatch: Function) => {
-    console.log(orderId)
-    console.log('productId', productId)
+  async (dispatch: Function, getState: Function) => {
     if (orderId && productId) {
-      return dispatch(removeProductAction(orderId, productId));
+      const { orderReducer } = getState();
+
+      const updatedOrders: Order[] = orderReducer.orders.map((order: Order) => {
+        if (order.id === orderId) {
+          order.items = order.items.filter((product: Product) => {
+            if (product["product-id"] === productId) {
+              order.total = String(Number(order.total) - Number(product.total));
+              return false;
+            }
+
+            return true;
+          });
+        }
+
+        return order;
+      });
+
+      return dispatch(removeProductAction(updatedOrders));
     }
   };

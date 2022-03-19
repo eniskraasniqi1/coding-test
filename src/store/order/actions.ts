@@ -1,4 +1,4 @@
-import { Order, Product } from "src/types";
+import { Order } from "src/types";
 import {
   ADD_PRODUCT,
   REMOVE_ORDER,
@@ -11,17 +11,17 @@ export const getAllOrdersAction = (payload: Order[]) => ({
   payload,
 });
 
-export const removeOrderAction = (id: string) => ({
+export const removeOrderAction = (orders: Order[]) => ({
   type: REMOVE_ORDER,
-  payload: id,
+  payload: orders,
 });
 
-export const addProductAction = (orderId: string, product: Product) => ({
+export const addProductAction = (orders: Order[]) => ({
   type: ADD_PRODUCT,
-  payload: { orderId, product },
+  payload: orders,
 });
 
-export const removeProductAction = (orderId: string, productId: string) => ({
+export const removeProductAction = (orders: Order[]) => ({
   type: REMOVE_PRODUCT,
-  payload: { orderId, productId },
+  payload: orders,
 });
