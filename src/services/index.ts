@@ -1,6 +1,7 @@
 import { order1, order2, order3 } from "src/constants/orders";
 import { products } from "src/constants/products";
-import { Order, Product } from "src/types";
+import { customers } from "src/constants/customers";
+import { Customer, Order, Product } from "src/types";
 
 // API Calls can be included instead of dummy data here.
 const orders: Order[] = [order1, order2, order3];
@@ -30,7 +31,7 @@ function getAllOrders(): Promise<Order[]> {
 function getProductById(id: string | undefined): Promise<Product> {
   return new Promise((resolve, reject) => {
     const product: Product | undefined = products.find(
-      (ord: Product) => ord.id === id
+      (product: Product) => product.id === id
     );
 
     if (product) {
@@ -46,9 +47,39 @@ function getAllProducts(): Promise<Product[]> {
     if (products.length) {
       resolve(products);
     } else {
-      reject(new Error("There are no orders"));
+      reject(new Error("There are no products"));
     }
   });
 }
 
-export { getOrderById, getAllOrders, getProductById, getAllProducts };
+function getCustomerById(id: string | undefined): Promise<Customer> {
+  return new Promise((resolve, reject) => {
+    const customer: Customer | undefined = customers.find(
+      (customer: Customer) => customer.id === id
+    );
+    if (customer) {
+      resolve(customer);
+    } else {
+      reject(new Error("There is no customer with that ID"));
+    }
+  });
+}
+
+function getAllCustomers(): Promise<Customer[]> {
+  return new Promise((resolve, reject) => {
+    if (customers.length) {
+      resolve(customers);
+    } else {
+      reject(new Error("There are no customers"));
+    }
+  });
+}
+
+export {
+  getOrderById,
+  getAllOrders,
+  getProductById,
+  getAllProducts,
+  getCustomerById,
+  getAllCustomers,
+};

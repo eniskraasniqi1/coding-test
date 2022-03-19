@@ -20,6 +20,13 @@ export type Product = {
   price: string;
 };
 
+export type Customer = {
+  id: string;
+  name: string;
+  since: string;
+  revenue: string;
+};
+
 export type Input = {
   id: string;
   name: string;

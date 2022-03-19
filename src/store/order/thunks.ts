@@ -1,7 +1,8 @@
-import { getAllOrders, getAllProducts } from "src/services";
+import { getAllCustomers, getAllOrders, getAllProducts } from "src/services";
 import { Order, OrderItem, Product } from "src/types";
 import {
   addOrderItemAction,
+  getAllCustomersAction,
   getAllOrdersAction,
   getAllProductsAction,
   removeOrderAction,
@@ -27,7 +28,7 @@ export const removeOrderThunk =
     }
   };
 
-export const getAllProductsThunk = () => async (dispatch: Function) => {
+export const getProductsThunk = () => async (dispatch: Function) => {
   const data: Product[] = await getAllProducts();
   if (data) {
     return dispatch(getAllProductsAction(data));
@@ -76,3 +77,10 @@ export const removeOrderItemThunk =
       return dispatch(removeOrderItemAction(updatedOrders));
     }
   };
+
+export const getCustomersThunk: any = () => async (dispatch: Function) => {
+  const data = await getAllCustomers();
+  if (data) {
+    return dispatch(getAllCustomersAction(data));
+  }
+};

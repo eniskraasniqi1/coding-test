@@ -2,15 +2,20 @@ import { useEffect, Dispatch } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Routes as Switch, Route } from "react-router-dom";
 import { Orders, ViewOrder } from "src/pages/Order";
-import { getAllProductsThunk, getOrdersThunk } from "src/store/order/thunks";
+import {
+  getProductsThunk,
+  getCustomersThunk,
+  getOrdersThunk,
+} from "src/store/order/thunks";
 
-const Body = ({ fetched, getOrders, getProducts }: Props) => {
+const Body = ({ fetched, getOrders, getProducts, getCustomers }: Props) => {
   useEffect(() => {
     if (!fetched) {
       getOrders();
       getProducts();
+      getCustomers();
     }
-  }, [fetched, getOrders, getProducts]);
+  }, [fetched, getOrders, getCustomers, getProducts]);
 
   return (
     <div className="body-container">
@@ -29,7 +34,8 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   getOrders: () => dispatch(getOrdersThunk()),
-  getProducts: () => dispatch(getAllProductsThunk()),
+  getProducts: () => dispatch(getProductsThunk()),
+  getCustomers: () => dispatch(getCustomersThunk()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

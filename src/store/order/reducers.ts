@@ -4,11 +4,13 @@ import {
   REMOVE_ORDER,
   GET_ALL_ORDERS,
   GET_ALL_PRODUCTS,
+  GET_ALL_CUSTOMERS,
 } from "../actionTypes";
 
 const initialState: any = {
   orders: [],
   products: [],
+  customers: [],
   fetched: false,
 };
 
@@ -40,6 +42,11 @@ export default (state = initialState, action: any): any => {
       return {
         ...state,
         products: action.payload,
+      };
+    case GET_ALL_CUSTOMERS:
+      return {
+        ...state,
+        customers: action.payload,
       };
     default:
       return state;
