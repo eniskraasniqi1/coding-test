@@ -1,12 +1,16 @@
 import { useEffect, Dispatch } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Routes as Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
 import { Orders, ViewOrder } from "src/pages/Order";
 import {
   getProductsThunk,
   getCustomersThunk,
   getOrdersThunk,
 } from "src/store/order/thunks";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const Body = ({ fetched, getOrders, getProducts, getCustomers }: Props) => {
   useEffect(() => {
@@ -19,6 +23,7 @@ const Body = ({ fetched, getOrders, getProducts, getCustomers }: Props) => {
 
   return (
     <div className="body-container">
+      <ToastContainer />
       <Switch>
         <Route path="/orders" element={<Orders />} />
         <Route path="/orders/:id" element={<ViewOrder />} />

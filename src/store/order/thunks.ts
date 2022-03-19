@@ -1,4 +1,8 @@
+import { toast } from "react-toastify";
+
+import { calculateTotal } from "src/helpers";
 import { getAllCustomers, getAllOrders, getAllProducts } from "src/services";
+
 import { Order, OrderItem, Product } from "src/types";
 import {
   addOrderItemAction,
@@ -38,19 +42,33 @@ export const getProductsThunk = () => async (dispatch: Function) => {
 export const addOrderItemThunk =
   (orderId: string | undefined, product: OrderItem) =>
   async (dispatch: Function, getState: Function) => {
-    if (orderId && product) {
-      const { orderReducer } = getState();
+    const { orderReducer } = getState();
 
-      const updatedOrders: Order[] = orderReducer.orders.map((order: Order) => {
-        if (order.id === orderId) {
+    const updatedOrders: Order[] = orderReducer.orders.map((order: Order) => {
+      if (order.id === orderId) {
+        const orderItemExists = order?.items?.find(
+          (item: OrderItem) => item["product-id"] === product["product-id"]
+        );
+
+        if (!orderItemExists) {
           order.items = [...order.items, product];
-          order.total = String(Number(order.total) + Number(product.total));
+          order.total = String(calculateTotal(order.items, "total"));
+        } else {
+          toast.error("Unable to add same Product!", {
+            position: "bottom-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
-        return order;
-      });
+      }
+      return order;
+    });
 
-      return dispatch(addOrderItemAction(updatedOrders));
-    }
+    return dispatch(addOrderItemAction(updatedOrders));
   };
 
 export const removeOrderItemThunk =
@@ -61,14 +79,10 @@ export const removeOrderItemThunk =
 
       const updatedOrders: Order[] = orderReducer.orders.map((order: Order) => {
         if (order.id === orderId) {
-          order.items = order.items.filter((product: OrderItem) => {
-            if (product["product-id"] === productId) {
-              order.total = String(Number(order.total) - Number(product.total));
-              return false;
-            }
-
-            return true;
-          });
+          order.items = order.items.filter(
+            (product: OrderItem) => product["product-id"] !== productId
+          );
+          order.total = String(calculateTotal(order.items, "total"));
         }
 
         return order;

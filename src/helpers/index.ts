@@ -1,10 +1,22 @@
 import { OrderItem } from "src/types";
 
-export function calculatePercentage(items: OrderItem[] | undefined): any {
+export function calculatePercentage(
+  items: OrderItem[] | undefined,
+  key: string = "unit-price"
+): any {
   if (!items?.length) return 0;
-  const sum = items.reduce((a, b) => a + Number(b["unit-price"]), 0);
+  const sum = items.reduce((a: number, b: any) => a + Number(b[key]), 0);
 
-  return (sum / items.length).toFixed(2) || 0;
+  return (sum / items.length).toFixed(3) || 0;
+}
+
+export function calculateTotal(items: any[], key: string): number {
+  const total = items?.reduce((acc, current) => {
+    acc += Number(current[key]);
+    return acc;
+  }, 0);
+
+  return parseFloat(total?.toFixed(3));
 }
 
 export function isPrimitive(val: any) {
