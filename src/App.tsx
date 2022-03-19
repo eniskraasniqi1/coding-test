@@ -1,22 +1,25 @@
-import { BrowserRouter, Routes as Switch, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
 
-import { Orders, EditOrder, ViewOrder } from "./pages/Order";
-import Header from "src/components/molecules/header/index";
+import Header from "src/components/molecules/header";
+import Body from "./components/molecules/body";
 
+import store from "./store";
 import { items } from "src/constants/menu";
 
 function App() {
+  const persistor = persistStore(store);
+
   return (
     <BrowserRouter>
-      <Header items={items} />
-      <div className="body-container">
-        <Switch>
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/orders/:id" element={<ViewOrder />} />
-          <Route path="/orders/edit/:id" element={<EditOrder />} />
-          <Route path="*" element={<div>404 not found</div>} />
-        </Switch>
-      </div>
+      <Provider store={store}>
+        <PersistGate loading={<h1>Loading</h1>} persistor={persistor}>
+          <Header items={items} />
+          <Body />
+        </PersistGate>
+      </Provider>
     </BrowserRouter>
   );
 }
