@@ -27,7 +27,7 @@
     "start": "react-scripts start",
     "serve": "yarn global add serve && serve -s build",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage  --watchAll=false --passWithNoTests",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -47,6 +47,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "src/components/molecules/body",
+      "src/components/molecules/header/types.td.ts",
+      "src/data",
+      "src/types",
+      "src/styles",
+      "/store",
+      "src/constants"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
   },
   "devDependencies": {
     "@types/node-sass": "^4.11.2",

@@ -33,8 +33,8 @@ export type Input = {
   type?: string;
   disabled?: boolean;
   value: any;
-  onChange: any;
-  onBlur: any;
+  onChange?: any;
+  onBlur?: any;
 };
 
 export type SelectOption = {

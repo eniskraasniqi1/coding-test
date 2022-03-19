@@ -5,7 +5,7 @@ import styles from "./input-field.module.scss";
 
 interface InputFieldProps {
   label: string;
-  error: string | undefined;
+  error?: string | undefined;
   input: InputType;
   required?: boolean;
 }

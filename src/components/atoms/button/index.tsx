@@ -9,16 +9,14 @@ interface ButtonProps {
   onClick?: (val: any) => void;
 }
 
-const Button = ({ type, btnText, className, onClick }: ButtonProps) => {
-  return (
-    <button
-      type={type && type}
-      className={`${styles.button} ${className && styles[className]}`}
-      onClick={onClick}
-    >
-      {btnText}
-    </button>
-  );
-};
+const Button = ({ type, btnText, className, onClick }: ButtonProps) => (
+  <button
+    type={type && type}
+    className={`${styles.button} ${className && styles[className]}`}
+    onClick={onClick}
+  >
+    {btnText}
+  </button>
+);
 
 export default Button;
