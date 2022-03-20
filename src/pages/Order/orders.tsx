@@ -21,7 +21,7 @@ const Orders = ({ orders, removeOrder }: Props) => {
   return (
     <>
       <Table
-        headerList={["Order id.", "Customer", "Quantity", "Total Price"]}
+        headerList={["Order id.", "Customer", "Items", "Total Price"]}
         items={orders}
         onDelete={handleDelete}
         onClick={navigateTo}

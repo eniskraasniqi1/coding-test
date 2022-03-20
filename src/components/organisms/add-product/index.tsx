@@ -8,9 +8,9 @@ import Button from "src/components/atoms/button";
 
 import { OrderItem, Product } from "src/types";
 import { addProductSchema } from "src/constants/schema";
+import { getSelectValues } from "src/helpers";
 
 import styles from "./add-product.module.scss";
-import { getSelectValues } from "src/helpers";
 
 interface AddProductFormProps extends Props {
   onSubmit: (item: OrderItem) => void;

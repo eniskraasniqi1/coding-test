@@ -14,7 +14,7 @@ describe("TableHeader tests", () => {
     });
 
     expect(container).toBeTruthy();
-    expect(container.querySelectorAll("th")).toHaveLength(3);
+    expect(container.querySelectorAll("th")).toHaveLength(4);
   });
 
   it("Should show the add Button", () => {

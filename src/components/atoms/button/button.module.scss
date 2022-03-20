@@ -14,11 +14,14 @@
   }
 
   &.rounded {
-    border-radius: 12px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    min-width: 13rem;
+
+    @media (min-width: 768px) {
+      min-width: 13rem;
+      border-radius: 12px;
+    }
   }
 
   &.danger {

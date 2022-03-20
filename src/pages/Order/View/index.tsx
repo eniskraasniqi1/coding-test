@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
@@ -11,8 +11,9 @@ import {
   addOrderItemThunk,
   removeOrderItemThunk,
 } from "src/store/order/thunks";
-import { Order, OrderItem } from "src/types";
+import { Customer, Order, OrderItem } from "src/types";
 import { calculatePercentage } from "src/helpers";
+import { getCustomerById } from "src/services";
 
 import styles from "./view.module.scss";
 
@@ -20,6 +21,16 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
   const { id } = useParams();
   const [show, setModal] = useState<boolean>(false);
   const order = orders?.find((order: Order) => order.id === id);
+  const [customer, setCustomer] = useState<Customer>();
+
+  useEffect(() => {
+    const getCustomer = async () => {
+      const data = await getCustomerById(order["customer-id"]);
+      setCustomer(data);
+    };
+
+    getCustomer();
+  }, [order]);
 
   if (!order) {
     return <h1>No Order found with that ID</h1>;
@@ -41,7 +52,7 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
       <div className={styles.header}>Order # {id}</div>
       <div className={styles.statsContainer}>
         <div className={styles.statBox}>
-          <span>{order?.["customer-id"]}</span>
+          <span>{customer?.name}</span>
           <span>Customer</span>
         </div>
         <div className={styles.statBox}>
@@ -58,14 +69,14 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
         </div>
       </div>
       <div className={styles.products}>
-        <p>Items:</p>
+        <p>Items</p>
         <Table
           headerList={["Product Id.", "Quantity", "Price", "Total"]}
           items={items}
           addRow={() => setModal(true)}
           addButtonLabel={
             <>
-              Add Product   <FaPlus />
+              Add Product <FaPlus />
             </>
           }
           onDelete={handleDelete}

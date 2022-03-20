@@ -5,9 +5,14 @@
   }
 
   > form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 767px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     .buttonWrapper {
       grid-column: span 2;
@@ -22,7 +27,7 @@
         background-color: #5885ff;
         color: white;
         cursor: pointer;
-        transition: transform .4s;
+        transition: transform 0.4s;
 
         &:hover {
           transform: scale(1.025);

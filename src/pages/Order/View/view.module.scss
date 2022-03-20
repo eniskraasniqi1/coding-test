@@ -18,8 +18,14 @@
 
   .statsContainer {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-gap: 2rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+    }
 
     .statBox {
       border: 1px solid var(--table-border-color);
