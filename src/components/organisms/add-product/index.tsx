@@ -10,6 +10,7 @@ import { OrderItem, Product } from "src/types";
 import { addProductSchema } from "src/constants/schema";
 
 import styles from "./add-product.module.scss";
+import { getSelectValues } from "src/helpers";
 
 interface AddProductFormProps extends Props {
   onSubmit: (item: OrderItem) => void;
@@ -95,10 +96,7 @@ const AddProductForm = ({ onSubmit, products }: AddProductFormProps) => {
             onChange: handleProductChange,
             onBlur: handleBlur,
           }}
-          options={products?.map((product: Product) => ({
-            value: product.id,
-            label: product.description,
-          }))}
+          options={getSelectValues(products)}
         />
         <InputField
           error={
@@ -109,7 +107,7 @@ const AddProductForm = ({ onSubmit, products }: AddProductFormProps) => {
           input={{
             id: "quantity",
             name: "quantity",
-            type: "string",
+            type: "text",
             value: values.quantity,
             onChange: handleQuantityChange,
             onBlur: handleBlur,
@@ -122,7 +120,7 @@ const AddProductForm = ({ onSubmit, products }: AddProductFormProps) => {
           input={{
             id: "price",
             name: "price",
-            type: "string",
+            type: "text",
             disabled: true,
             value: values.price,
             onChange: handleChange,
@@ -137,7 +135,7 @@ const AddProductForm = ({ onSubmit, products }: AddProductFormProps) => {
           input={{
             id: "total",
             name: "total",
-            type: "string",
+            type: "text",
             disabled: true,
             value: values.total,
             onChange: handleChange,

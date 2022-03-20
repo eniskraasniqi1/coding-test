@@ -52,14 +52,17 @@
     "coveragePathIgnorePatterns": [
       "src/components/molecules/body",
       "src/components/molecules/header/types.td.ts",
+      "src/App",
+      "src/index.tsx",
+      "src/pages",
       "src/data",
       "src/types",
-      "src/styles",
-      "/store",
+      "src/store",
       "src/constants"
     ],
     "coverageThreshold": {
       "global": {
+        "branches": 70,
         "functions": 80,
         "lines": 80,
         "statements": 80

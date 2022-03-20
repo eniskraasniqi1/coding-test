@@ -7,8 +7,15 @@ import { customers } from "src/data/customers";
 import { Customer } from "src/types";
 
 describe("TableBody tests", () => {
+  const createWrapper =
+    () =>
+    ({ children }: any) =>
+      <table>{children}</table>;
+
   it("Should render with given list", () => {
-    const { container } = render(<TableBody items={customers} />);
+    const { container } = render(<TableBody items={customers} />, {
+      wrapper: createWrapper(),
+    });
     expect(container).toBeTruthy();
     expect(container.querySelectorAll("tr")).toHaveLength(3);
   });
@@ -22,14 +29,20 @@ describe("TableBody tests", () => {
       ));
 
     const { container } = render(
-      <TableBody items={customers} onDelete={handleDelete} />
+      <TableBody items={customers} onDelete={handleDelete} />,
+      {
+        wrapper: createWrapper(),
+      }
     );
     expect(container.querySelectorAll("tr")).toHaveLength(3);
     const button: any = container.querySelector(".danger");
     fireEvent.click(button);
 
     const { container: container2 } = render(
-      <TableBody items={fullCustomers} onDelete={handleDelete} />
+      <TableBody items={fullCustomers} onDelete={handleDelete} />,
+      {
+        wrapper: createWrapper(),
+      }
     );
 
     expect(container2.querySelectorAll("tr")).toHaveLength(2);

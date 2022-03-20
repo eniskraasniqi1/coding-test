@@ -1,13 +1,12 @@
-import { OrderItem } from "src/types";
+import { Product } from "src/types";
 
-export function calculatePercentage(
-  items: OrderItem[] | undefined,
-  key: string = "unit-price"
-): any {
-  if (!items?.length) return 0;
+export function calculatePercentage(items: any[], key: string): number {
+  if (!items?.length || !key) return 0;
   const sum = items.reduce((a: number, b: any) => a + Number(b[key]), 0);
-
-  return (sum / items.length).toFixed(3) || 0;
+  const value: number = sum / items.length;
+  const percentage: string = value ? value.toFixed(3) : "0";
+  
+  return Number(percentage);
 }
 
 export function calculateTotal(items: any[], key: string): number {
@@ -28,6 +27,15 @@ export function isPrimitive(val: any) {
 }
 
 export function getIdentifierKey(item: any): string {
+  if (!item) return "";
   const keys = ["id", "product-id"];
-  return keys.find((key) => (item[key] ? true : false)) || "id";
+  return keys.find((key) => (item[key] ? true : false)) || "";
+}
+
+export function getSelectValues(products?: Product[]) {
+  if (!products) return [];
+  return products?.map((product: Product) => ({
+    value: product.id,
+    label: product.description,
+  }));
 }

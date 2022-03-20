@@ -45,7 +45,7 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
           <span>Items</span>
         </div>
         <div className={styles.statBox}>
-          <span>{calculatePercentage(items)}</span>
+          <span>{calculatePercentage(items, "unit-price")}</span>
           <span>AVG Unit Price</span>
         </div>
         <div className={styles.statBox}>

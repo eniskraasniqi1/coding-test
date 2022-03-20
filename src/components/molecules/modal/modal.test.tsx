@@ -17,7 +17,7 @@ describe("Modal tests", () => {
 
   it("Closes on click", () => {
     const { container } = render(
-      <Modal close={() => console.log("clicked modal!")} show={true}>
+      <Modal close={() => {}} show={true}>
         child!
       </Modal>
     );
