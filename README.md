@@ -1,7 +1,7 @@
 # About this project
 
 With this SPA project you can add orders, add products to them and finally submit them. How the application communicates for now:\
-** App -> Redux thunk -> gets services (here you can replace with the real api) and dispatches actions to store -> component gets and shows data. **
+**App** -> **Redux thunk** -> gets **services** (here you can replace with the real api) and dispatches **actions to store** -> component gets and **shows data**.
 
 ## Available Scripts
 
@@ -22,4 +22,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `yarn test`
 
-Launches the test runner, and you can see the stats
+Launches the test runner, and you can see the stats.
