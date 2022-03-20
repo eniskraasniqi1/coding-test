@@ -8,6 +8,7 @@
   --default-font-color: var(--color-5);
   --lightgray-color: var(--color-6);
   --default-input-font-color: var(--color-7);
+  --success-color: var(--color-9);
 
   // Sizes
   --maximum-container-size: 96rem;
@@ -20,6 +21,11 @@ body,
   font-size: 10px;
   background-color: var(--body-background-color);
   height: 100%;
+
+  .Toastify__toast-container--top-center,
+  .Toastify__toast-container--top-right {
+    font-size: 1.4rem;
+  }
 }
 
 .body-container {

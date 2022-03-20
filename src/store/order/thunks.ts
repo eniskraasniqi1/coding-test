@@ -66,8 +66,8 @@ export const addOrderItemThunk =
           order.items = [...order.items, product];
           order.total = String(calculateTotal(order.items, "total"));
         } else {
-          toast.error("Unable to add same Product!", {
-            position: "bottom-center",
+          toast.error("Product already exists!", {
+            position: "top-center",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,

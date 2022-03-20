@@ -1,8 +1,12 @@
 import React, { Dispatch, useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { useParams } from "react-router-dom";
-import { FaPlus } from "react-icons/fa";
+import { FaCheck, FaPlus } from "react-icons/fa";
+import { toast } from "react-toastify";
 
+import Box from "src/components/atoms/stat-box";
+import Button from "src/components/atoms/button";
+import NotFound from "src/components/atoms/not-found";
 import Modal from "src/components/molecules/modal";
 import Table from "src/components/organisms/table";
 import AddProductForm from "src/components/organisms/add-product";
@@ -22,6 +26,29 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
   const [show, setModal] = useState<boolean>(false);
   const order = orders?.find((order: Order) => order.id === id);
   const [customer, setCustomer] = useState<Customer>();
+  const { total, items } = order || {};
+
+  const handleDelete = (productId: string, e: React.SyntheticEvent): void => {
+    removeProduct(id, productId);
+  };
+
+  const handleOrderSubmit = (order: Order) => {
+    console.log("Placed the order!", order);
+    toast.success("Order placed!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const handleOnProductSubmit = (product: OrderItem): void => {
+    addProduct(id, product);
+    setModal(false);
+  };
 
   useEffect(() => {
     const getCustomer = async () => {
@@ -29,44 +56,35 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
       setCustomer(data);
     };
 
-    getCustomer();
+    order && getCustomer();
   }, [order]);
 
   if (!order) {
-    return <h1>No Order found with that ID</h1>;
+    return <NotFound text="Oooooops!! Order not found!" />;
   }
-
-  const { total, items } = order || {};
-
-  const handleDelete = (productId: string, e: React.SyntheticEvent): void => {
-    removeProduct(id, productId);
-  };
-
-  const handleOnSubmit = (product: OrderItem): void => {
-    addProduct(id, product);
-    setModal(false);
-  };
 
   return (
     <div className={styles.detailsComponent}>
-      <div className={styles.header}>Order # {id}</div>
+      <div className={styles.header}>
+        <span>Order # {id}</span>
+        <Button
+          className="success"
+          onClick={handleOrderSubmit}
+          btnText={
+            <>
+              <span>Submit</span> <FaCheck />
+            </>
+          }
+        />
+      </div>
       <div className={styles.statsContainer}>
-        <div className={styles.statBox}>
-          <span>{customer?.name}</span>
-          <span>Customer</span>
-        </div>
-        <div className={styles.statBox}>
-          <span>{items?.length}</span>
-          <span>Items</span>
-        </div>
-        <div className={styles.statBox}>
-          <span>{calculatePercentage(items, "unit-price")}</span>
-          <span>AVG Unit Price</span>
-        </div>
-        <div className={styles.statBox}>
-          <span>{total}</span>
-          <span>Total</span>
-        </div>
+        <Box label="Customer" value={customer?.name} />
+        <Box label="Items" value={items?.length} />
+        <Box
+          label="AVG Unit Price"
+          value={calculatePercentage(items, "unit-price")}
+        />
+        <Box label="Total" value={total} />
       </div>
       <div className={styles.products}>
         <p>Items</p>
@@ -82,7 +100,7 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
           onDelete={handleDelete}
         />
         <Modal show={show} close={() => setModal(false)}>
-          <AddProductForm onSubmit={handleOnSubmit} />
+          <AddProductForm onSubmit={handleOnProductSubmit} />
         </Modal>
       </div>
     </div>

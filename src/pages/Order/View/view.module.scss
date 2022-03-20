@@ -11,6 +11,7 @@
     margin-bottom: 3rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 1.6rem;
     font-size: 3rem;
     border-bottom: 1px solid var(--table-border-color);
@@ -25,26 +26,6 @@
     @media (min-width: 768px) {
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(1, 1fr);
-    }
-
-    .statBox {
-      border: 1px solid var(--table-border-color);
-      background-color: var(--lightgray-color);
-      border-radius: 0.8rem;
-      width: 100%;
-      padding: 2rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-
-      > span {
-        &:first-of-type {
-          font-size: 2.8rem;
-          font-weight: bold;
-        }
-      }
     }
   }
 
