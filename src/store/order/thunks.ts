@@ -5,6 +5,7 @@ import { getAllCustomers, getAllOrders, getAllProducts } from "src/services";
 
 import { Order, OrderItem, Product } from "src/types";
 import {
+  addOrderAction,
   addOrderItemAction,
   getAllCustomersAction,
   getAllOrdersAction,
@@ -12,6 +13,17 @@ import {
   removeOrderAction,
   removeOrderItemAction,
 } from "./actions";
+
+export const addOrderThunk: any =
+  (order: Order) => async (dispatch: Function, getState: Function) => {
+    const {
+      orderReducer: { orders },
+    } = getState();
+    if (order) {
+      const updatedOrders: Order[] = [...orders, order];
+      return dispatch(addOrderAction(updatedOrders));
+    }
+  };
 
 export const getOrdersThunk: any = () => async (dispatch: Function) => {
   const data = await getAllOrders();

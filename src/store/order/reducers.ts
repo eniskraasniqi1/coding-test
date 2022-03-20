@@ -1,4 +1,5 @@
 import {
+  ADD_ORDER,
   ADD_ORDER_ITEM,
   REMOVE_ORDER_ITEM,
   REMOVE_ORDER,
@@ -17,6 +18,11 @@ const initialState: any = {
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default (state = initialState, action: any): any => {
   switch (action.type) {
+    case ADD_ORDER:
+      return {
+        ...state,
+        orders: action.payload,
+      };
     case GET_ALL_ORDERS:
       return {
         ...state,

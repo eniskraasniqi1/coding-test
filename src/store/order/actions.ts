@@ -1,5 +1,6 @@
 import { Customer, Order, Product } from "src/types";
 import {
+  ADD_ORDER,
   ADD_ORDER_ITEM,
   REMOVE_ORDER,
   GET_ALL_ORDERS,
@@ -7,6 +8,11 @@ import {
   GET_ALL_PRODUCTS,
   GET_ALL_CUSTOMERS,
 } from "../actionTypes";
+
+export const addOrderAction = (payload: Order[]) => ({
+  type: ADD_ORDER,
+  payload,
+});
 
 export const getAllOrdersAction = (payload: Order[]) => ({
   type: GET_ALL_ORDERS,
