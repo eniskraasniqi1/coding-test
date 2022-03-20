@@ -7,14 +7,14 @@ import { customers } from "src/data/customers";
 // API Calls can be included instead of dummy data here.
 const orders: Order[] = [order1, order2, order3];
 
-function addOrder(order: Order): void {
-  try {
-    // connect api if we want to
-    // axios.post("", order);
-  } catch (err) {
-    console.log(err);
-  }
-}
+// function addOrder(order: Order): void {
+//   try {
+//     // connect api if we want to
+//     // axios.post("", order);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 function getOrderById(id: string | undefined): Promise<Order> {
   return new Promise((resolve, reject) => {
@@ -86,7 +86,7 @@ function getAllCustomers(): Promise<Customer[]> {
 }
 
 export {
-  addOrder,
+  // addOrder,
   getOrderById,
   getAllOrders,
   getProductById,

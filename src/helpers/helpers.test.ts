@@ -6,6 +6,7 @@ import {
   isPrimitive,
   getIdentifierKey,
   getSelectValues,
+  keygen,
 } from ".";
 
 describe("Helpers tests", () => {
@@ -77,5 +78,12 @@ describe("Helpers tests", () => {
   it("Should return empty array if nothing is provided", () => {
     const values = getSelectValues();
     expect(values).toHaveLength(0);
+  });
+
+  it("Should generate different values", () => {
+    const value1 = keygen();
+    const value2 = keygen();
+
+    expect(value1 === value2).toBeFalsy();
   });
 });
