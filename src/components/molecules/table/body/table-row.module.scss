@@ -17,8 +17,10 @@
 
     > td {
       &:last-of-type {
-        display: flex;
-        justify-content: flex-end;
+        @media (min-width: 768px) {
+          display: flex;
+          justify-content: flex-end;
+        }
 
         > button:last-of-type {
           margin-left: 1rem;

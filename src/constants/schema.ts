@@ -11,4 +11,8 @@ const addProductSchema = yup.object({
   total: yup.number().required("Total is required!"),
 });
 
-export { addProductSchema };
+const addOrderSchema = yup.object({
+  customer: yup.string().required("Customer is required!"),
+});
+
+export { addProductSchema, addOrderSchema };

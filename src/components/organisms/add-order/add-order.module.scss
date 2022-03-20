@@ -1,0 +1,38 @@
+.wrapper {
+  min-width: 30rem;
+  padding: 2rem;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 4rem;
+    font-size: 2.2rem;
+  }
+
+  > form {
+    column-gap: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    .buttonWrapper {
+      grid-column: span 2;
+      text-align: center;
+      margin-top: 2rem;
+
+      > button {
+        min-height: 3rem;
+        width: 20rem;
+        border-radius: 0.4rem;
+        border: 0;
+        padding: 1rem;
+        background-color: #5885ff;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.4s;
+
+        &:hover {
+          transform: scale(1.025);
+        }
+      }
+    }
+  }
+}

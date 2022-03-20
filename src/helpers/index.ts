@@ -5,7 +5,7 @@ export function calculatePercentage(items: any[], key: string): number {
   const sum = items.reduce((a: number, b: any) => a + Number(b[key]), 0);
   const value: number = sum / items.length;
   const percentage: string = value ? value.toFixed(3) : "0";
-  
+
   return Number(percentage);
 }
 
@@ -38,4 +38,10 @@ export function getSelectValues(products?: Product[]) {
     value: product.id,
     label: product.description,
   }));
+}
+
+export function keygen() {
+  const chr4 = () => Math.random().toString(16).slice(-4);
+
+  return `${chr4()}-${chr4()}-${chr4()}-${chr4()}`;
 }

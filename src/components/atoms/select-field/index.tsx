@@ -1,10 +1,16 @@
+import { FormikErrors } from "formik";
 import { Input, SelectOption } from "src/types";
 
 import styles from "./select-field.module.scss";
 
 interface SelectFieldProps {
   label: string;
-  error: string | undefined;
+  error:
+    | string
+    | string[]
+    | FormikErrors<any>
+    | FormikErrors<any>[]
+    | undefined;
   select: Input;
   required?: boolean;
   options?: SelectOption[];
