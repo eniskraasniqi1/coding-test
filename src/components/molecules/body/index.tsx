@@ -3,7 +3,9 @@ import { connect, ConnectedProps } from "react-redux";
 import { Routes as Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { Orders, ViewOrder } from "src/pages/Order";
+import Orders from "src/pages/Order/orders";
+import ViewOrder from "src/pages/Order/View";
+
 import {
   getProductsThunk,
   getCustomersThunk,

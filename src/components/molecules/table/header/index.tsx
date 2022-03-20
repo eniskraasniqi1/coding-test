@@ -6,19 +6,28 @@ import styles from "./table-header.module.scss";
 export interface TableHeaderProps {
   list?: string[];
   addRow?: (item: any) => void;
+  addButtonLabel?: React.ReactElement | string;
 }
 
-const TableHeader = ({ list, addRow }: TableHeaderProps) => (
+const TableHeader = ({
+  list,
+  addRow,
+  addButtonLabel = "+",
+}: TableHeaderProps) => (
   <thead className={styles.header}>
     <tr>
       {list?.map((name: string, index: number) => (
         <th key={`name-#${index}`}>{name}</th>
       ))}
-      {addRow && (
-        <th className={styles.btnContainer}>
-          <Button btnText="+" onClick={addRow} />
-        </th>
-      )}
+      <th className={styles.btnContainer}>
+        {addRow && (
+          <Button
+            className="rounded"
+            btnText={addButtonLabel}
+            onClick={addRow}
+          />
+        )}
+      </th>
     </tr>
   </thead>
 );

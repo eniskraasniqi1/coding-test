@@ -4,14 +4,18 @@
   --body-background-color: var(--color-2);
   --table-border-color: var(--color-3);
   --table-font-color: var(--color-4);
+  --table-hover-color: var(--color-8);
   --default-font-color: var(--color-5);
+  --lightgray-color: var(--color-6);
+  --default-input-font-color: var(--color-7);
 
   // Sizes
   --maximum-container-size: 96rem;
 }
 
 html,
-body {
+body,
+#root {
   margin: 0;
   font-size: 10px;
   background-color: var(--body-background-color);
@@ -20,5 +24,6 @@ body {
 
 .body-container {
   max-width: var(--maximum-container-size);
+  height: 100%;
   margin: 1rem auto;
 }

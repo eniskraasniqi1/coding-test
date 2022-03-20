@@ -4,7 +4,7 @@ import styles from "./button.module.scss";
 
 interface ButtonProps {
   type?: "submit" | "button" | "reset" | undefined;
-  btnText: string;
+  btnText: string | React.ReactElement;
   className?: string;
   onClick?: (val: any) => void;
 }

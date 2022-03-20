@@ -1,6 +1,9 @@
 import React from "react";
+import { FaTrash } from "react-icons/fa";
+
 import Button from "src/components/atoms/button";
 import { getIdentifierKey, isPrimitive } from "src/helpers";
+
 import styles from "./table-row.module.scss";
 
 interface TableBodyProps {
@@ -34,7 +37,7 @@ const TableBody = ({ items, onDelete, onClick }: TableBodyProps) => (
             {onDelete && (
               <Button
                 className="danger"
-                btnText="X"
+                btnText={<FaTrash />}
                 onClick={(e: any) => onDelete && onDelete(item[itemIdKey], e)}
               />
             )}

@@ -1,5 +1,5 @@
 .header {
-  border-bottom: 1px solid var(--table-border-color);
+  background-color: var(--lightgray-color);
 
   th {
     text-align: left;
@@ -11,11 +11,5 @@
   .btnContainer {
     display: flex;
     justify-content: flex-end;
-
-    > button {
-      width: 40px;
-      width: 40px;
-      cursor: pointer;
-    }
   }
 }

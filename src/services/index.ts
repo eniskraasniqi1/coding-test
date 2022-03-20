@@ -1,7 +1,8 @@
+import { Customer, Order, Product } from "src/types";
+
 import { order1, order2, order3 } from "src/data/orders";
 import { products } from "src/data/products";
 import { customers } from "src/data/customers";
-import { Customer, Order, Product } from "src/types";
 
 // API Calls can be included instead of dummy data here.
 const orders: Order[] = [order1, order2, order3];

@@ -1,36 +1,36 @@
 .detailsComponent {
   border-radius: 1rem;
   font-size: 1.8rem;
-  padding: 2.4rem 0;
-  border: 1px solid var(--table-border-color);
+  padding: 2.4rem 3rem;
+  margin-top: 5rem;
   background-color: var(--header-background-color);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   .header {
     min-height: 7rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     display: flex;
     align-items: center;
     padding: 0 1.6rem;
     font-size: 3rem;
+    border-bottom: 1px solid var(--table-border-color);
   }
 
   .statsContainer {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
 
     .statBox {
+      border: 1px solid var(--table-border-color);
+      background-color: var(--lightgray-color);
+      border-radius: 0.8rem;
       width: 100%;
       padding: 2rem 0;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      border: 1.5px solid var(--table-border-color);
-      border-right: 0;
-
-      &:first-child {
-        border-left: 0;
-      }
 
       > span {
         &:first-of-type {
@@ -43,13 +43,13 @@
 
   .products {
     margin-top: 6rem;
-    max-width: calc(100% - 6rem);
     margin: 0 auto;
 
     > p {
       font-size: 2rem;
       margin-bottom: 1rem;
       margin-top: 4rem;
+      margin-bottom: 2rem;
     }
   }
 }

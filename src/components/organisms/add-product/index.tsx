@@ -145,7 +145,7 @@ const AddProductForm = ({ onSubmit, products }: AddProductFormProps) => {
 
         {error?.length > 0 && <div>{error}</div>}
         <div className={styles.buttonWrapper}>
-          <Button type="submit" btnText="Add Product" />
+          <Button type="submit" btnText="Add" />
         </div>
       </form>
     </div>

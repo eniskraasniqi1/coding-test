@@ -16,8 +16,8 @@
   > input {
     border-radius: 0.7rem;
     min-height: 4rem;
-    background-color: #f8f8f8;
-    color: #b8b8bb;
+    background-color: var(--lightgray-color);
+    color: var(--default-input-font-color);
     border: 0;
     padding-left: 1rem;
   }

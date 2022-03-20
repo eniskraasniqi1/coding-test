@@ -8,6 +8,7 @@ interface TableProps {
   headerList: string[];
   items: any[] | undefined;
   addRow?: (item: any) => void;
+  addButtonLabel?: React.ReactElement | string;
   onClick?: (path: string, e: React.SyntheticEvent) => void;
   onDelete?: (id: string, e: React.SyntheticEvent) => void;
 }
@@ -16,12 +17,17 @@ const Table = ({
   headerList,
   items,
   addRow,
+  addButtonLabel,
   onClick,
   onDelete,
 }: TableProps) => (
   <div className={styles.tableWrapper}>
     <table className={styles.table}>
-      <TableHeader addRow={addRow} list={headerList} />
+      <TableHeader
+        addButtonLabel={addButtonLabel}
+        addRow={addRow}
+        list={headerList}
+      />
       <TableBody items={items} onClick={onClick} onDelete={onDelete} />
     </table>
   </div>

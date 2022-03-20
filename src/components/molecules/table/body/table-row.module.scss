@@ -4,13 +4,15 @@
   }
 
   .tableRow {
-    border-bottom: 1px solid var(--table-border-color);
-    transition: transform 0.1s;
+    border-spacing: 0;
+
+    &:nth-child(even) {
+      background-color: var(--lightgray-color);
+    }
 
     &:hover {
       cursor: pointer;
-      transform: scale(1.005);
-      background-color: var(--table-border-color);
+      background-color: var(--table-hover-color);
     }
 
     > td {

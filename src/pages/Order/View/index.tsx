@@ -1,15 +1,19 @@
 import React, { Dispatch, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { useParams } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
+
 import Modal from "src/components/molecules/modal";
 import Table from "src/components/organisms/table";
-import { calculatePercentage } from "src/helpers";
+import AddProductForm from "src/components/organisms/add-product";
+
 import {
   addOrderItemThunk,
   removeOrderItemThunk,
 } from "src/store/order/thunks";
 import { Order, OrderItem } from "src/types";
-import AddProductForm from "src/components/organisms/add-product";
+import { calculatePercentage } from "src/helpers";
+
 import styles from "./view.module.scss";
 
 const View = ({ orders, addProduct, removeProduct }: Props) => {
@@ -54,11 +58,16 @@ const View = ({ orders, addProduct, removeProduct }: Props) => {
         </div>
       </div>
       <div className={styles.products}>
-        <p>Order Items:</p>
+        <p>Items:</p>
         <Table
           headerList={["Product Id.", "Quantity", "Price", "Total"]}
           items={items}
           addRow={() => setModal(true)}
+          addButtonLabel={
+            <>
+              Add Product   <FaPlus />
+            </>
+          }
           onDelete={handleDelete}
         />
         <Modal show={show} close={() => setModal(false)}>
