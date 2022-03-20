@@ -29,4 +29,18 @@
     font-size: 1.2rem;
     height: 3rem;
   }
+
+  &.success {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1.5rem;
+    width: 11rem;
+    height: 4rem;
+    background-color: var(--success-color);
+
+    > span {
+      margin-right: 1rem;
+    }
+  }
 }

@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 
 import Orders from "src/pages/Order/orders";
 import ViewOrder from "src/pages/Order/View";
+import NotFound from "src/components/atoms/not-found";
 
 import {
   getProductsThunk,
@@ -29,7 +30,7 @@ const Body = ({ fetched, getOrders, getProducts, getCustomers }: Props) => {
       <Switch>
         <Route path="/orders" element={<Orders />} />
         <Route path="/orders/:id" element={<ViewOrder />} />
-        <Route path="*" element={<div>404 not found</div>} />
+        <Route path="*" element={<NotFound />} />
       </Switch>
     </div>
   );
