@@ -60,11 +60,9 @@ const Orders = ({ orders, removeOrder, addOrder }: Props) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return {
-    orders: state.orderReducer.orders,
-  };
-};
+const mapStateToProps = (state: any) => ({
+  orders: state.orderReducer.orders,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   removeOrder: (id: string) => dispatch(removeOrderThunk(id)),

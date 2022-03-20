@@ -7,11 +7,9 @@ import Orders from "src/pages/Order/orders";
 import ViewOrder from "src/pages/Order/View";
 import NotFound from "src/components/atoms/not-found";
 
-import {
-  getProductsThunk,
-  getCustomersThunk,
-  getOrdersThunk,
-} from "src/store/order/thunks";
+import { getOrdersThunk } from "src/store/order/thunks";
+import { getCustomersThunk } from "src/store/customer/thunks";
+import { getProductsThunk } from "src/store/product/thunks";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,7 +26,7 @@ const Body = ({ fetched, getOrders, getProducts, getCustomers }: Props) => {
     <div className="body-container">
       <ToastContainer />
       <Switch>
-        <Route path="/orders" element={<Orders />} />
+        <Route path="/" element={<Orders />} />
         <Route path="/orders/:id" element={<ViewOrder />} />
         <Route path="*" element={<NotFound />} />
       </Switch>

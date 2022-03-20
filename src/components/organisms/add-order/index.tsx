@@ -64,7 +64,7 @@ const AddOrder = ({ onSubmit, customers }: AddOrderProps) => {
             onChange: handleChange,
             onBlur: handleBlur,
           }}
-          options={customers.map((customer: Customer) => ({
+          options={customers?.map((customer: Customer) => ({
             label: customer.name,
             value: customer.id,
           }))}
@@ -80,7 +80,7 @@ const AddOrder = ({ onSubmit, customers }: AddOrderProps) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  customers: state.orderReducer.customers,
+  customers: state.customerReducer.customers,
 });
 
 const connector = connect(mapStateToProps);

@@ -153,7 +153,7 @@ const AddProductForm = ({ onSubmit, products }: AddProductFormProps) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  products: state.orderReducer.products,
+  products: state.productReducer.products,
 });
 
 const connector = connect(mapStateToProps);

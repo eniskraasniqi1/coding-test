@@ -1,15 +1,13 @@
 import { toast } from "react-toastify";
 
 import { calculateTotal } from "src/helpers";
-import { getAllCustomers, getAllOrders, getAllProducts } from "src/services";
+import { getAllOrders } from "src/services";
 
-import { Order, OrderItem, Product } from "src/types";
+import { Order, OrderItem } from "src/types";
 import {
   addOrderAction,
   addOrderItemAction,
-  getAllCustomersAction,
   getAllOrdersAction,
-  getAllProductsAction,
   removeOrderAction,
   removeOrderItemAction,
 } from "./actions";
@@ -43,13 +41,6 @@ export const removeOrderThunk =
       return dispatch(removeOrderAction(updatedOrders));
     }
   };
-
-export const getProductsThunk = () => async (dispatch: Function) => {
-  const data: Product[] = await getAllProducts();
-  if (data) {
-    return dispatch(getAllProductsAction(data));
-  }
-};
 
 export const addOrderItemThunk =
   (orderId: string | undefined, product: OrderItem) =>
@@ -103,10 +94,3 @@ export const removeOrderItemThunk =
       return dispatch(removeOrderItemAction(updatedOrders));
     }
   };
-
-export const getCustomersThunk: any = () => async (dispatch: Function) => {
-  const data = await getAllCustomers();
-  if (data) {
-    return dispatch(getAllCustomersAction(data));
-  }
-};
